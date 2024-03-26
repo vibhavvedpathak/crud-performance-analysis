@@ -7,18 +7,18 @@ This project is a CRUD (Create, Read, Update, Delete) application designed to st
 * **Employee Data Management:**
     * Create and add new employee records
     * View and edit existing employee information
-    * Delete employee records (with appropriate safeguards)
-* **Performance Analysis (Optional):**
+    * Delete employee records 
+* **Performance Analysis :**
     * Track and visualize employee performance metrics
     * Generate reports for performance evaluation
-* **Data Security (Optional, emphasize its importance):**
-    * Implement appropriate security measures to protect sensitive employee data (e.g., access control, encryption)
+* **Data Security :**
+    * Implement appropriate security measures to protect sensitive employee data 
 
 ## Benefits
 
 * **Improved Efficiency:** Streamlines employee data management tasks, reducing manual effort and potential errors.
 * **Enhanced Data Accuracy:** Ensures data consistency and integrity through centralized storage and management.
-* **Informed Decision Making:** Provides a platform for collecting, analyzing, and visualizing performance data to support data-driven decisions regarding employee training, development, and promotions (optional, depending on project scope).
+* **Informed Decision Making:** Provides a platform for collecting, analyzing, and visualizing performance data to support data-driven decisions regarding employee training, development, and promotions .
 * **Increased Scalability:** Accommodates the addition of new employees and data points as the organization grows.
 
 ## Technology Stack (Optional, if applicable)
