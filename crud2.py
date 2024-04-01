@@ -1,6 +1,8 @@
 import mysql.connector
 import streamlit as st
 import pandas as pd
+from pathlib import Path
+from data_analysis import DataReader
 
 # Connecting to the database
 mydb = mysql.connector.connect(
@@ -14,9 +16,9 @@ mycursor = mydb.cursor()
 print("Connection Established")
 
 def main():
-    st.title("CRUD Operations for Employee Data")
+    st.title("CRUD Operations for Employee Data")   
 
-    option = st.sidebar.selectbox("Select an Operation", ("CREATE", "READ", "UPDATE", "DELETE"))
+    option = st.sidebar.selectbox("Select an Operation", ("CREATE", "READ", "UPDATE", "DELETE","EMPLOYEE ANALYSIS"))
 
     if option == "CREATE":
         st.subheader("Create a New Employee Record")
@@ -99,7 +101,25 @@ def main():
                     st.success("Record Deleted Successfully")
             else:
                 st.error("Employee ID not found.")
+    
+    elif option == "EMPLOYEE ANALYSIS":
+        st.subheader("Data Analysis")
+        uploaded_file = st.file_uploader("Upload CSV File")
+        if uploaded_file is not None:
+            try:
+                data_reader = DataReader()
+                data_reader.load_data(uploaded_file)
+                df = data_reader.df
+                st.write(df.describe())
+                st.write(data_reader.display_head())
+            except FileNotFoundError as e:
+                st.error(e)
+            except pd.errors.ParserError as e:
+                st.error("Error parsing the uploaded file. Please ensure it's a valid CSV format.")
+
+
 
 
 if __name__ == "__main__":
-    main()
+    main() 
+    
