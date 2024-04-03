@@ -1,7 +1,7 @@
 import streamlit
 import pymongo
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from pathlib import Path
 import streamlit as st
 
@@ -26,7 +26,6 @@ class DataReader:
             print(self.df.head(num_rows))
         else:
             print("No data loaded yet. Please use the load_data() first.")
-
 
 
 

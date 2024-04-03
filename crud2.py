@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 from pathlib import Path
 from data_analysis import DataReader
+import matplotlib.pyplot as plt
 
 # Connecting to the database
 mydb = mysql.connector.connect(
@@ -104,18 +105,26 @@ def main():
     
     elif option == "EMPLOYEE ANALYSIS":
         st.subheader("Data Analysis")
-        uploaded_file = st.file_uploader("Upload CSV File")
-        if uploaded_file is not None:
-            try:
-                data_reader = DataReader()
-                data_reader.load_data(uploaded_file)
-                df = data_reader.df
-                st.write(df.describe())
-                st.write(data_reader.display_head())
-            except FileNotFoundError as e:
-                st.error(e)
-            except pd.errors.ParserError as e:
-                st.error("Error parsing the uploaded file. Please ensure it's a valid CSV format.")
+
+        # Radio buttons for analysis selection
+        analysis_option = st.radio("Select Analysis", ("Describe Data", "Attrition Correlation with Age"))
+
+        # File upload (optional)
+        if analysis_option == 'Describe Data':
+            uploaded_file = st.file_uploader("Upload CSV File")
+            if uploaded_file is not None:
+                try:
+                    data_reader = DataReader()
+                    data_reader.load_data(uploaded_file)
+                    df = data_reader.df
+                    st.write(df.describe())
+                    st.write(data_reader.display_head())
+                except FileNotFoundError as e:
+                    st.error(e)
+                except pd.errors.ParserError as e:
+                    st.error("Error parsing the uploaded file. Please ensure it's a valid CSV format.")
+
+            
 
 
 
